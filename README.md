@@ -2,7 +2,16 @@
 
 **SNAPE** (Smoothed N-body Astrophysical Particle Engine) is a high-performance, bare-metal C++ framework engineered for large-scale, state-of-the-art astrophysical simulations. Designed from the ground up with advanced High-Performance Computing (HPC) principles, SNAPE bridges complex mathematical modeling with elite software architecture. 
 
-Built on a strict philosophy of **zero-cost abstraction**, the engine leverages and borrows from deep C++ metaprogramming techniques—such as Curiously Recurring Template Patterns (CRTP) / Mixin', template recursion, and static polymorphism—to completely eliminate runtime overhead. At the hardware level, SNAPE is heavily optimized through Struct of Arrays (SoA) memory layouts, branchless programming, and aggressive SIMD alignment to maximize cache locality and execution throughput, further enhanced by rigorous Compile/Link-Time Optimizations (LTO). This robust, unified architectural foundation sets the stage for the ongoing development of dependent, highly complex data structures and a suite of state-of-the-art physics algorithms and computational grid solvers (including advanced Multigrid, Krylov subspace, and Domain Decomposition methods) as well as Lagrangian, Mesh-Free Methods that will drive the engine's simulations.
+## ⚡ HPC Architecture & Philosophy
+
+Built on a strict philosophy of **zero-cost abstraction**, SNAPE's robust, unified architectural foundation sets the stage for the ongoing development of dependent, highly complex data structures and a suite of state-of-the-art physics algorithms. This includes computational grid solvers (such as advanced Multigrid, Krylov subspace, and Domain Decomposition methods) as well as Lagrangian, Mesh-Free Methods that will drive the engine's simulations.
+
+To achieve this, the engine relies on advanced software engineering and hardware-level optimizations:
+
+* **Deep C++ Metaprogramming:** The engine leverages and borrows from techniques such as the Curiously Recurring Template Pattern (CRTP) / Mixin, template recursion, and static polymorphism to completely eliminate runtime overhead.
+* **Hardware-Level Optimization:** SNAPE is heavily optimized through Struct of Arrays (SoA) memory layouts, branchless programming, and aggressive SIMD alignment to maximize cache locality and execution throughput.
+* **Multi-Tier Parallelism:** Architected from the ground up to support highly scalable execution, enabling seamless expansion across shared-memory multi-core CPUs, GPU accelerators, and distributed high-performance computing clusters in the future.
+* **Advanced Compilation:** Execution speed is further enhanced by rigorous Compile/Link-Time Optimizations (LTO).
 
 ## 🚀 Core Software Features
 
@@ -11,6 +20,7 @@ Built on a strict philosophy of **zero-cost abstraction**, the engine leverages 
 - **Compile-Time Configuration:** Engine capabilities are defined before compilation. This directed compilation strategy guarantees highly optimized, deeply pipelined, and incredibly small binaries tailored specifically for the physics required by your current run, by utilising conditional module inclusion.
 - **State-of-the-Art Modularity:** Adding a new physics module or solver does not require rewriting the core loop. The engine is built to be a plug-and-play sandbox for high-performance computing.
 - **Centralized & Decentralized Logic:** The architecture supports both globally centralized data structures and decentralized, localized memory slots, allowing the engine to adapt to the specific spatial & temporal requirements of the simulation.
+- * **Strict Requirements** Type-safety, RAII (Resource Acquisition Is Initialization), and proper exception handling are rigorously enforced throughout the codebase to mitigate user-imposed errors and guarantee memory safety.
 - **Automated Configuration Management:** SNAPE dynamically parses and handles input parameters, automatically generating structured configuration files based on the specific domains and solvers active in the compile-time slots via an integrated Python script.
 - **Fully Pipelined Processes:** The main execution loop is a streamlined, pipelined process. Data flows cleanly from domain initialization, through decoupled phase-math operations, and into the integrators with zero overhead.
 
