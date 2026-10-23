@@ -1,0 +1,86 @@
+{
+    "CMAKE_OPTIONS": {
+            "CMAKE_BUILD_TYPE": {"value" : "Release", "options" : ["Release", "Debug", "RelWithDebInfo"], "description" : "Build configuration type"},
+            "CMAKE_CXX_FLAGS": {"value" : "-O3 -march=native", "options" : ["-O3", "-O0 -g"], "description" : "Global C++ compiler flags"}
+    },
+
+    "COMPILE_TIME": {
+        "CORE" : {
+            "REAL" : {"value" : "double", "options" : ["float", "double"], "description" : "Precision choice for the engine"},
+            "HDF5_RealType" : {"value" : "H5T_NATIVE_DOUBLE", "options" : ["H5T_NATIVE_FLOAT", "H5T_NATIVE_DOUBLE"], "description" : "Precision choice for the HDF5 IO Tools"}
+        },
+        "GRAVITY" : {
+            "GRAVITY_ENABLED"   : {"value" : 1, "options" : [0, 1], "description" : "Add gravitational forces to the simulation"},
+            "GRAVITY_FRAMEWORK" : {"value" : "GRAVITY_MESH", "options" : ["DIRECT_SUMS", "GRAVITY_MESH"], "description" : "General framework scheme for gravity"}        
+        },
+        "HYDRO" : {
+            "HYDRO_ENABLED"   : {"value" : 0, "options" : [0, 1], "description" : "Add gravitational forces to the simulation"},
+            "HYDRO_FRAMEWORK" : {"value" : "DIRECT_SUMS", "options" : ["", ""], "description" : "General framework scheme for hydrodynamics"}        
+        },
+        "INTEGRATOR" : {
+            "INTEGRATOR" : {"value" : "VELOCITY_VERLET", "options" : ["VELOCITY_VERLET", "RK2"], "description" : "Integrator that will be used for the engine"}
+        },
+        "DOMAIN" : {
+            "MESH_SLOT_1" : {"value" : "UNIFORM_MESH", "options" : ["NO_DOMAIN", "UNIFORM_MESH"], "description" : "Domain that will be created and assigned to Slot1"},
+            "MESH_SLOT_2" : {"value" : "UNIFORM_MESH", "options" : ["NO_DOMAIN", "UNIFORM_MESH"], "description" : "Domain that will be created and assigned to Slot2"},
+            "HYDRO_SLOT"    : {"value" : 1, "options" : [0, 1, 2], "description" : "Make hydrodynamics domain to point to MESH_SLOT_#value#"},
+            "GRAVITY_SLOT"    : {"value" : 2, "options" : [0, 1, 2], "description" : "Make gravity domain to point to MESH_SLOT_#value#"}        
+        },
+        "SOLVER" : {
+            "GRAVITY_SOLVER"  : {"value" : "SOLVER_MULTIGRID", "options" : ["SOLVER_NONE", "SOLVER_CG", "SOLVER_MULTIGRID", "SOLVER_BARNES_HUT"], "description" : "Solver selection for gravity"},
+            "GRAVITY_WRAPPER" : {"value" : "WRAPPER_JAMES", "options" : ["WRAPPER_NONE", "WRAPPER_JAMES", "WRAPPER_TREE"], "description" : "Solver wrapper selection for gravity"},
+            "HYDRO_SOLVER"    : {"value" : "SOLVER_NONE", "options" : ["SOLVER_NONE", "SOLVER_CG", "SOLVER_MULTIGRID", "SOLVER_BARNES_HUT"], "description" : "Solver selection for gravity"},
+            "HYDRO_WRAPPER"   : {"value" : "WRAPPER_NONE", "options" : ["WRAPPER_NONE", "WRAPPER_JAMES", "WRAPPER_TREE"], "description" : "Solver wrapper selection for hydrodynamics"}        
+        }       
+    },
+
+    "RUNTIME" : {
+        "INITIAL_CONDITIONS" : {
+            "Generator" : {"type" : "string", "description" : "Select a specific generator for initial conditions"},
+            "seed" : {"type" : "int", "description" : "Random sample generator seed for reproducability"},
+            "UniformSphere" : {
+                "R" : {"type" : "REAL", "description" : "Radius of the generated uniform sphere"},
+                "isVirialised" : {"type" : "bool", "description" : "Choose whether the velocities will be virialised or not"}
+            },
+            "PlummerSphere" : {
+                "R" : {"type" : "REAL", "description" : "Radius of the generated uniform sphere"},
+                "isVirialised" : {"type" : "bool", "description" : "Choose whether the velocities will be virialised or not"}
+            }
+        },
+        "CORE" : {
+            "N" : {"type" : "size_t", "description" : "Number of particles in a given simulation"},
+            "M" : {"type" : "REAL", "description" : "Assign total mass"}
+        },
+        "GRAVITY" : {
+            "G" : {"type" : "REAL", "description" : "Gravitational constant"},
+            
+            "DIRECT_SUMS" : {
+                "e_soft" : {"type" : "REAL", "description" : "Softening length for gravity"}
+            }
+        },
+        "DOMAIN" : {
+            "UNIFORM_MESH" : {
+                "N_mesh" : {"type" : "size_t" , "description" : "Number of vertices in the mesh per axis"},
+                "N_pad"  : {"type" : "size_t" , "description" : "Number of padding in the mesh per axis and per side"}
+            }
+        },
+        "INTEGRATOR" : {
+            "t_end" : {"type" : "REAL", "description" : "Duration of the simulation in simulation units"}
+        },
+        "IO" : {
+            "snapshotInterval" : {"type" : "size_t", "description" : "Number of timesteps between consecutive state snapshots"}
+        }
+    },
+
+    "ENGINE_ACTION" : {
+        "action" : {"type" : "string", "options" : ["ICGen", "SimStandard", "SimWithNewParams", "ICGenNRun"], "description" : "Specifies what action should be taken"}, 
+        "test_folder" : {"type" : "string", "description" : "Specifies the folder in which we load/save data"},        
+        "test_name" : {"type" : "string", "description" : "Specifies the name of the test that is used as a prefix for all IO Files"},
+        "stepID" : {"type" : "size_t", "description" : "Specifies the ID of the file in the case of restarting the simulation midpoint"}
+    }
+}
+
+
+
+
+
