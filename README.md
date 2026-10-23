@@ -1,6 +1,6 @@
 # SNAPE: Smoothed N-body Astrophysical Particle Engine
 
-**SNAPE** (Smoothed N-body Astrophysical Particle Engine) is a high-performance, bare-metal C++ framework engineered for large-scale, state-of-the-art astrophysical simulations. Designed from the ground up with advanced High-Performance Computing (HPC) principles, SNAPE bridges complex mathematical modeling with elite software architecture. 
+**SNAPE** (Smoothed N-body Astrophysical Particle Engine) is a high-performance, bare-metal C++ framework engineered for large-scale, state-of-the-art astrophysical simulations. Designed from the ground up with advanced High-Performance Computing (HPC) principles, SNAPE bridges complex mathematical modeling with elite software architecture. The engine is still under heavy development.
 
 ## ⚡ HPC Architecture & Philosophy
 
